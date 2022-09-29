@@ -11,7 +11,14 @@
     "contributors": [
         "Max van der Schee"
     ],
-    "types": "lib/main.ts",
-    "module": "lib/main.ts",
-    "dependencies": {}
+    "types": "lib/main.d.ts",
+    "module": "lib/main.mjs",
+    "exports": {
+        ".": {
+            "import": {
+                "default": "./lib/main.mjs",
+                "types": "./lib/main.d.ts"
+            }
+        }
+    }
 }

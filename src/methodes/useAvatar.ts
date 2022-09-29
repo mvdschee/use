@@ -1,4 +1,4 @@
-import { useToColor } from './useColor';
+import { useToColor } from './useColor.ts';
 
 export const useAvatar = (account: string): string => {
     return `<svg x="0" y="0" viewbox="0 0 32 32" style="overflow:hidden;border-radius:50%;background-color:${useToColor(
