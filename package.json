@@ -1,7 +1,7 @@
 {
     "name": "@mvdschee/use",
     "description": "A collection of TypeScript functions",
-    "version": "0.0.6",
+    "version": "0.0.9",
     "license": "MIT",
     "private": false,
     "author": {
