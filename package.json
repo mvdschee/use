@@ -1,7 +1,7 @@
 {
     "name": "@mvdschee/use",
     "description": "A collection of TypeScript functions",
-    "version": "0.0.2",
+    "version": "0.0.6",
     "license": "MIT",
     "private": false,
     "author": {
@@ -11,7 +11,7 @@
     "contributors": [
         "Max van der Schee"
     ],
-    "types": "lib/types.ts",
+    "types": "lib/main.ts",
     "module": "lib/main.ts",
     "dependencies": {}
 }
