@@ -1,7 +1,12 @@
 {
     "name": "@mvdschee/use",
-    "description": "A collection of TypeScript functions",
-    "version": "0.0.9",
+    "description": "A collection of methodes I use daily",
+    "keywords": [
+        "use",
+        "methods",
+        "utils"
+    ],
+    "version": "0.0.11",
     "license": "MIT",
     "private": false,
     "author": {
@@ -20,5 +25,11 @@
                 "types": "./lib/main.d.ts"
             }
         }
+    },
+    "scripts": {
+        "build": "unbuild"
+    },
+    "devDependencies": {
+        "unbuild": "^0.8.11"
     }
 }

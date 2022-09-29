@@ -17,7 +17,7 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTION
 
 interface UseFetchArgs {
     method?: HttpMethod;
-    headers?: Record<string, string>;
+    headers?: HeadersInit;
     baseUrl?: string;
     body?: Record<string, unknown>;
     params?: Record<string, string>;

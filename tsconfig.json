@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["esnext", "DOM"],
+        "moduleResolution": "Node",
+        "allowJs": false,
+        "declaration": true,
+        "strict": true,
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "noEmit": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "emitDeclarationOnly": true,
+        "outDir": "lib",
+        "skipLibCheck": true
+    },
+    "include": ["src/*.ts"]
+}
