@@ -1,7 +1,7 @@
 import { useToColor } from './useColor';
 
 export const useAvatar = (account: string): string => {
-    return `<svg x="0" y="0" viewbox="0 0 32 32" style="overflow:hidden;border-radius:50%;background-color:${useToColor(
+    return `<svg x="0" y="0" viewbox="0 0 32 32" style="overflow:hidden;border-radius:50%;width:100%;height:100%;background-color:${useToColor(
         account,
         0.7
     )}">
