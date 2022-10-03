@@ -1,3 +1,9 @@
+// --------------------------------------------------
+// TIME METHODES
+// --------------------------------------------------
+// Includes:
+// useCountDown
+
 export const useCountDown = (startTime: number, now: number): string => {
     if (!startTime) return '0';
 

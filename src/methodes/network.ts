@@ -1,3 +1,10 @@
+// --------------------------------------------------
+// NETWORK METHODES
+// --------------------------------------------------
+// Includes:
+// useFetch
+// useSWR
+
 interface UseFetchReturn<T> {
     /**
      * The raw response of the fetch response
@@ -51,4 +58,27 @@ export const useFetch = async <T>(url: string, args?: UseFetchArgs): Promise<Use
             time: 0,
         };
     }
+};
+
+const cache = new Map();
+export const useSWR = async (key: string, refresh: (lastValue?: unknown) => Promise<unknown>, staleAfter = 600_000) => {
+    const data = cache.get(key) || { ts: 0, val: null, promise: null };
+
+    cache.set(key, data);
+    // Item is stale, start refreshing in the background
+    if (!data.promise && Date.now() - data.ts > staleAfter) {
+        data.promise = refresh(data.val);
+
+        try {
+            data.ts = Date.now();
+            data.val = await data.promise;
+        } catch (e: unknown) {
+            throw new Error(e as any);
+        } finally {
+            data.promise = null;
+        }
+    }
+    // No data yet, wait for the refresh to finish
+    if (data.promise && !data.ts) await data.promise;
+    return data.val;
 };

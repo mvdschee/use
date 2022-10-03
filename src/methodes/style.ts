@@ -1,3 +1,9 @@
+// --------------------------------------------------
+// STYLE METHODES
+// --------------------------------------------------
+// Includes:
+// useColor
+
 interface useColorArgs {
     /**
      * Adjusting color rang by offset

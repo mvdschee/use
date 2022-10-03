@@ -1,4 +1,10 @@
-import { useColor } from './useColor';
+// --------------------------------------------------
+// DOM METHODES
+// --------------------------------------------------
+// Includes:
+// useAvatar
+
+import { useColor } from './style';
 
 export const useAvatar = (account: string): string => {
     return `<svg x="0" y="0" viewbox="0 0 32 32" style="overflow:hidden;border-radius:50%;width:100%;height:100%;background-color:${useColor(
