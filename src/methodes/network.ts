@@ -34,7 +34,7 @@ interface UseFetchArgs {
     bodyToBytes?: boolean;
 }
 
-export const useFetch = async <T>(url: string, args?: UseFetchArgs): Promise<UseFetchReturn<T>> => {
+export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): Promise<UseFetchReturn<T>> => {
     const options: RequestInit = {
         method: args?.method || 'GET',
         headers: args?.headers || {},
@@ -61,7 +61,11 @@ export const useFetch = async <T>(url: string, args?: UseFetchArgs): Promise<Use
 };
 
 const cache = new Map();
-export const useSWR = async (key: string, refresh: (lastValue?: unknown) => Promise<unknown>, staleAfter = 600_000) => {
+export const useSWR = async <T = unknown>(
+    key: string,
+    refresh: (lastValue?: unknown) => Promise<unknown>,
+    staleAfter = 600_000
+): Promise<T> => {
     const data = cache.get(key) || { ts: 0, val: null, promise: null };
 
     cache.set(key, data);

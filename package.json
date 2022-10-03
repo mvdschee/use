@@ -6,13 +6,22 @@
         "methods",
         "utils"
     ],
-    "version": "0.0.16",
+    "version": "0.0.17",
     "license": "MIT",
     "private": false,
     "author": {
         "name": "Max van der Schee",
         "url": "https://maxvanderschee.nl"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mvdschee/use.git",
+        "directory": "packages/core"
+    },
+    "bugs": {
+        "url": "https://github.com/mvdschee/use/issues"
+    },
+    "homepage": "https://github.com/mvdschee/use#readme",
     "contributors": [
         "Max van der Schee"
     ],
