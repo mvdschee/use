@@ -34,6 +34,7 @@ import { useFetch } from '@mvdschee/use';
 ### DOM
 
 -   [useAvatar](#useAvatar)
+-   [useMarkdown](#useMarkdown)
 
 ### Style
 
@@ -115,6 +116,19 @@ import { useAvatar } from '@mvdschee/use';
 
 useAvatar('example'); // returns a svg as a string
 ```
+
+## useMarkdown
+
+Fast and compact markdown parser
+see [mvdschee/drawdown](https://github.com/mvdschee/drawdown) for more info
+
+````ts
+
+```ts
+import { useMarkdown } from '@mvdschee/use';
+
+useMarkdown('example'); // returns a HTML <div> element with parsed markdown
+````
 
 ## useColor
 

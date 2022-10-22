@@ -1,3 +1,4 @@
+import markdown from '../vendor/drawdown.js';
 // --------------------------------------------------
 // DOM METHODES
 // --------------------------------------------------
@@ -24,4 +25,20 @@ export const useAvatar = (account: string): string => {
         offset: 0.9,
     })}"></rect>
 </svg>`;
+};
+
+export const useMarkdown = (source: string): HTMLDivElement => {
+    try {
+        const html = markdown(source);
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const div = doc.createElement('div');
+
+        div.innerHTML = doc.body.innerHTML;
+
+        return div;
+    } catch (error) {
+        console.error(error);
+        return document.createElement('div');
+    }
 };
