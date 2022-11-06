@@ -4,6 +4,7 @@ import markdown from '../vendor/drawdown.js';
 // --------------------------------------------------
 // Includes:
 // useAvatar
+// useMarkdown
 
 import { useColor } from './style';
 
@@ -27,18 +28,24 @@ export const useAvatar = (account: string): string => {
 </svg>`;
 };
 
-export const useMarkdown = (source: string): HTMLDivElement => {
+export const useMarkdown = (source: string, renderAsHTML = false, className = 'markdown'): HTMLDivElement | string => {
     try {
         const html = markdown(source);
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const div = doc.createElement('div');
 
-        div.innerHTML = doc.body.innerHTML;
+        if (renderAsHTML) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const div = doc.createElement('div');
+            div.className = className;
 
-        return div;
+            div.innerHTML = doc.body.innerHTML;
+
+            return div;
+        }
+
+        return html;
     } catch (error) {
-        console.error(error);
+        console.error('useMarkdown:', error);
         return document.createElement('div');
     }
 };
