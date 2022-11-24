@@ -122,13 +122,14 @@ useAvatar('example'); // returns a svg as a string
 Fast and compact markdown parser
 see [mvdschee/drawdown](https://github.com/mvdschee/drawdown) for more info
 
-````ts
-
 ```ts
 import { useMarkdown } from '@mvdschee/use';
 
-useMarkdown('example'); // returns a HTML <div> element with parsed markdown
-````
+useMarkdown('example'); // returns a string: <p>example</p>
+
+// with options (source, render as html, class)
+useMarkdown('example', true, 'class-name'); // returns a DOM element: <div class="class-name"><p>example</p></div>
+```
 
 ## useColor
 

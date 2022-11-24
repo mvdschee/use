@@ -1,4 +1,4 @@
-import markdown from '../vendor/drawdown.js';
+import { markdown } from '../vendor/drawdown';
 // --------------------------------------------------
 // DOM METHODES
 // --------------------------------------------------
