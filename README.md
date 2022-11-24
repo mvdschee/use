@@ -34,6 +34,7 @@ import { useFetch } from '@mvdschee/use';
 ### DOM
 
 -   [useAvatar](#useAvatar)
+-   [useMarkdown](#useMarkdown)
 
 ### Style
 
@@ -114,6 +115,20 @@ Fast and beautiful dynamic avatar based on account name
 import { useAvatar } from '@mvdschee/use';
 
 useAvatar('example'); // returns a svg as a string
+```
+
+## useMarkdown
+
+Fast and compact markdown parser
+see [mvdschee/drawdown](https://github.com/mvdschee/drawdown) for more info
+
+```ts
+import { useMarkdown } from '@mvdschee/use';
+
+useMarkdown('example'); // returns a string: <p>example</p>
+
+// with options (source, render as html, class)
+useMarkdown('example', true, 'class-name'); // returns a DOM element: <div class="class-name"><p>example</p></div>
 ```
 
 ## useColor

@@ -1,8 +1,10 @@
+import { markdown } from '../vendor/drawdown';
 // --------------------------------------------------
 // DOM METHODES
 // --------------------------------------------------
 // Includes:
 // useAvatar
+// useMarkdown
 
 import { useColor } from './style';
 
@@ -24,4 +26,26 @@ export const useAvatar = (account: string): string => {
         offset: 0.9,
     })}"></rect>
 </svg>`;
+};
+
+export const useMarkdown = (source: string, renderAsHTML = false, className = 'markdown'): HTMLDivElement | string => {
+    try {
+        const html = markdown(source);
+
+        if (renderAsHTML) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const div = doc.createElement('div');
+            div.className = className;
+
+            div.innerHTML = doc.body.innerHTML;
+
+            return div;
+        }
+
+        return html;
+    } catch (error) {
+        console.error('useMarkdown:', error);
+        return document.createElement('div');
+    }
 };
