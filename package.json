@@ -6,7 +6,7 @@
         "methods",
         "utils"
     ],
-    "version": "0.0.17",
+    "version": "0.0.21",
     "license": "MIT",
     "private": false,
     "author": {
@@ -15,8 +15,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/mvdschee/use.git",
-        "directory": "packages/core"
+        "url": "git+https://github.com/mvdschee/use.git"
     },
     "bugs": {
         "url": "https://github.com/mvdschee/use/issues"
@@ -26,12 +25,16 @@
         "Max van der Schee"
     ],
     "types": "lib/main.d.ts",
+    "main": "lib/main.cjs",
     "module": "lib/main.mjs",
     "exports": {
         ".": {
             "import": {
                 "default": "./lib/main.mjs",
                 "types": "./lib/main.d.ts"
+            },
+            "require": {
+                "default": "./lib/main.cjs"
             }
         }
     },

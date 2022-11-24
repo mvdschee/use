@@ -21,8 +21,10 @@ interface useColorArgs {
  * Util to transform a string to a color
  * Useful for account based personalisations
  */
-export const useColor = (str: string, args: useColorArgs): string => {
-    const stringUniqueHash = [...str].reduce((acc, char) => {
+export const useColor = (str: string | null, args: useColorArgs): string => {
+    const source = str || '0';
+
+    const stringUniqueHash = [...source].reduce((acc, char) => {
         return char.charCodeAt(0) + ((acc << 5) - acc);
     }, 0);
 

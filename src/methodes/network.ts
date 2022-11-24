@@ -32,9 +32,11 @@ interface UseFetchArgs {
      * not implemented yet
      */
     bodyToBytes?: boolean;
+    fetch?: typeof fetch;
 }
 
 export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): Promise<UseFetchReturn<T>> => {
+    const call = args?.fetch || fetch;
     const options: RequestInit = {
         method: args?.method || 'GET',
         headers: args?.headers || {},
@@ -46,7 +48,7 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
 
     try {
         const t1 = performance.now();
-        const response = await fetch(url, { ...options });
+        const response = await call(url, { ...options });
         const data = await response.json();
         const t2 = performance.now();
 
