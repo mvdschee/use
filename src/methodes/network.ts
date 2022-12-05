@@ -70,7 +70,6 @@ export const useSWR = async <T = unknown>(
 ): Promise<T> => {
     const data = cache.get(key) || { ts: 0, val: null, promise: null };
 
-    cache.set(key, data);
     // Item is stale, start refreshing in the background
     if (!data.promise && Date.now() - data.ts > staleAfter) {
         data.promise = refresh(data.val);
@@ -84,6 +83,8 @@ export const useSWR = async <T = unknown>(
             data.promise = null;
         }
     }
+
+    cache.set(key, data);
     // No data yet, wait for the refresh to finish
     if (data.promise && !data.ts) await data.promise;
     return data.val;
