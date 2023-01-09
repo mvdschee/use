@@ -7,7 +7,7 @@
         "utils",
         "typescript"
     ],
-    "version": "0.0.23",
+    "version": "0.0.24",
     "license": "MIT",
     "private": false,
     "author": {
@@ -40,9 +40,11 @@
         }
     },
     "scripts": {
-        "build": "unbuild"
+        "build": "unbuild",
+        "dev": "wds"
     },
     "devDependencies": {
-        "unbuild": "^0.8.11"
+        "unbuild": "^1.0.2",
+        "@web/dev-server": "^0.1.35"
     }
 }

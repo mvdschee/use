@@ -15,6 +15,10 @@ interface UseFetchReturn<T> {
      */
     error: Error | null;
     /**
+     * Any fetch errors that may have occurred
+     */
+    headers: Record<string, string>;
+    /**
      * The time the fetch took to complete
      */
     time: number;
@@ -28,34 +32,34 @@ interface UseFetchArgs {
     baseUrl?: string;
     body?: Record<string, unknown>;
     params?: Record<string, string>;
-    /**
-     * not implemented yet
-     */
-    bodyToBytes?: boolean;
-    fetch?: typeof fetch;
 }
 
 export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): Promise<UseFetchReturn<T>> => {
-    const call = args?.fetch || fetch;
     const options: RequestInit = {
         method: args?.method || 'GET',
         headers: args?.headers || {},
         body: args?.body ? JSON.stringify(args.body) : null,
     };
+    const headers: Record<string, string> = {};
 
     if (args?.baseUrl) url = args.baseUrl + url;
     if (args?.params) url += `?${new URLSearchParams(args.params).toString()}`;
 
     try {
         const t1 = performance.now();
-        const response = await call(url, { ...options });
+        const response = await fetch(url, { ...options });
         const data = await response.json();
+
+        for (const [key, value] of response.headers.entries()) {
+            headers[key] = value;
+        }
         const t2 = performance.now();
 
-        return { data, error: null, time: t2 - t1 };
+        return { data, error: null, headers, time: t2 - t1 };
     } catch (error: unknown) {
         return {
             data: null,
+            headers,
             error: error as Error,
             time: 0,
         };

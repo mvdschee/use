@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@mvdschee/use Playground</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        span {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <span></span>
+
+</body>
+
+<script type="module">
+    import { useFetch, useAvatar } from "../lib/main.mjs";
+
+    // header info test
+    const { time, headers } = await useFetch("https://api.neftyblocks.me/market?collection_name=elf.funko&chain=wax&network=mainnet&limit=6");
+    console.log(time, headers);
+
+    // avatar test
+    const avatar = await useAvatar("mvdschee");
+    document.querySelector("span").innerHTML = avatar;
+
+</script>
+
+</html>

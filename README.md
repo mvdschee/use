@@ -151,3 +151,10 @@ import { useCountDown } from '@mvdschee/use';
 // (start time, current time)
 useCountDown(new Date().valueOf() - 1000, new Date().valueOf()); // returns 1S
 ```
+
+# 💻 Development
+
+-   Clone this repository
+-   Run `yarn` to install dependencies
+-   Run `yarn build` to build the library and rebuild after a change, I don't have a nice setup for this yet
+-   Run `yarn dev` to start the development server
