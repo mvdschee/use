@@ -32,6 +32,7 @@ interface UseFetchArgs {
     baseUrl?: string;
     body?: Record<string, unknown>;
     params?: Record<string, string>;
+    blob?: boolean;
 }
 
 export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): Promise<UseFetchReturn<T>> => {
@@ -40,7 +41,9 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
         headers: args?.headers || {},
         body: args?.body ? JSON.stringify(args.body) : null,
     };
+
     const headers: Record<string, string> = {};
+    const getBlob = args ? !!args.blob : false;
 
     if (args?.baseUrl) url = args.baseUrl + url;
     if (args?.params) url += `?${new URLSearchParams(args.params).toString()}`;
@@ -48,7 +51,7 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
     try {
         const t1 = performance.now();
         const response = await fetch(url, { ...options });
-        const data = await response.json();
+        const data = getBlob ? await response.blob() : await response.json();
 
         for (const [key, value] of response.headers.entries()) {
             headers[key] = value;
