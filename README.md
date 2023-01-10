@@ -28,25 +28,27 @@ import { useFetch } from '@mvdschee/use';
 
 ### Network
 
--   [useFetch](#useFetch)
--   [useSWR](#useSWR)
+-   [useFetch](#useFetch) Some extra ease of use functions on top of `fetch`, like instant headers, response timing and body and query parsing.
+-   [useSWR](#useSWR) `stale-while-revalidate` always return data while updating once the time out is over.
 
 ### DOM
 
--   [useAvatar](#useAvatar)
--   [useMarkdown](#useMarkdown)
+-   [useAvatar](#useAvatar) A colorful profile photo based on the account name.
+-   [useMarkdown](#useMarkdown) A fast and compact markdown parser. (no support for HTML)
 
 ### Style
 
--   [useColor](#useColor)
+-   [useColor](#useColor) Convert a string to a hsla color.
 
 ### Time
 
--   [useCountDown](#useCountDown)
+-   [useCountDown](#useCountDown) Countdown displayer, in `1D2H3M4S` format.
 
 ## useFetch
 
 Small wrapper around native fetch to stringify body and parse parms as an object (not doing polyfilling)
+
+No need for a `try catch`, this is done iternaly.
 
 ```ts
 // GET request
@@ -94,6 +96,18 @@ if (error) // do something with the error
 else {
     // do something with the data
 }
+```
+
+```ts
+// All options
+import { useFetch } from '@mvdschee/use';
+
+const { data, error, header, time } = await useFetch<DataType>('/api/data', {
+    baseUrl: 'https://example.com',
+});
+
+console.log(header['content-type']); // returns the content-type header
+console.log(time); // returns the time it took to fetch the data
 ```
 
 ## useSWR
