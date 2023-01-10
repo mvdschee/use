@@ -16,16 +16,18 @@
             background-color: #000;
         }
 
-        span {
-            width: 100px;
-            height: 100px;
+        .group {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(4, 100px);
+
         }
     </style>
 </head>
 
 <body>
 
-    <span></span>
+    <div class="group"></div>
 
 </body>
 
@@ -37,8 +39,11 @@
     console.log(time, headers);
 
     // avatar test
-    const avatar = await useAvatar("mvdschee");
-    document.querySelector("span").innerHTML = avatar;
+    const avatar1 = await useAvatar("bbbbb");
+    const avatar2 = await useAvatar("cccc");
+    const avatar3 = await useAvatar("dd");
+    const avatar4 = await useAvatar("aaaaa");
+    document.querySelector(".group").innerHTML = `${avatar1}${avatar2}${avatar3}${avatar4}`;
 
 </script>
 
