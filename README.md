@@ -1,6 +1,6 @@
 # use
 
-### ⚡️ Under heavy development. Not ready for public consumption. ⚡️
+### ⚡️ Under heavy development. Pin your NPM version!!!! before consumption. ⚡️
 
 Useful methodes I use daily in projects.
 Most methodes you probably find in your favorite framework, but I needed something I can use everywhere.
