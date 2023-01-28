@@ -7,7 +7,7 @@
         "utils",
         "typescript"
     ],
-    "version": "0.0.26",
+    "version": "0.0.27",
     "license": "MIT",
     "private": false,
     "author": {
@@ -30,13 +30,9 @@
     "module": "lib/main.mjs",
     "exports": {
         ".": {
-            "import": {
-                "default": "./lib/main.mjs",
-                "types": "./lib/main.d.ts"
-            },
-            "require": {
-                "default": "./lib/main.cjs"
-            }
+            "types": "./lib/main.d.ts",
+            "require": "./lib/main.cjs",
+            "default": "./lib/main.mjs"
         }
     },
     "scripts": {
