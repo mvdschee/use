@@ -44,6 +44,10 @@ import { useFetch } from '@mvdschee/use';
 
 -   [useCountDown](#useCountDown) Countdown displayer, in `1D2H3M4S` format.
 
+### Format
+
+-   [useTokenDisplay](#useTokenDisplay) format a number to a string display, with a max of 8 decimals.
+
 ## useFetch
 
 Small wrapper around native fetch to stringify body and parse parms as an object (not doing polyfilling)
@@ -164,6 +168,19 @@ import { useCountDown } from '@mvdschee/use';
 
 // (start time, current time)
 useCountDown(new Date().valueOf() - 1000, new Date().valueOf()); // returns 1S
+```
+
+## useTokenDisplay
+
+Format a number to a string display, with a max of 8 decimals (default)
+and optional fixed decimals (default false)
+
+```ts
+import { useTokenDisplay } from '@mvdschee/use';
+
+useTokenDisplay(100, 2); // returns 100
+
+useTokenDisplay(100, 2, true); // returns 100.00
 ```
 
 # 💻 Development
