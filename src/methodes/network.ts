@@ -4,6 +4,7 @@
 // Includes:
 // useFetch
 // useSWR
+// useRetry
 
 interface UseFetchReturn<T> {
     /**
@@ -73,7 +74,7 @@ const cache = new Map();
 export const useSWR = async <T = unknown>(
     key: string,
     refresh: (lastValue?: unknown) => Promise<unknown>,
-    staleAfter = 600_000
+    staleAfter = 600_000,
 ): Promise<T> => {
     const data = cache.get(key) || { ts: 0, val: null, promise: null };
 
@@ -95,4 +96,38 @@ export const useSWR = async <T = unknown>(
     // No data yet, wait for the refresh to finish
     if (data.promise && !data.ts) await data.promise;
     return data.val;
+};
+
+export const useRetry = <T = unknown>({
+    retries = 3,
+    delay = 1000,
+    retryOn,
+    call,
+}: {
+    retries?: number;
+    delay?: number;
+    retryOn: (data: unknown) => boolean;
+    call: () => Promise<UseFetchReturn<T>>;
+}) => {
+    let count = 0;
+
+    const retry = async (): Promise<UseFetchReturn<T>> => {
+        const result = await call();
+
+        if (result.error) return result;
+
+        if (retryOn(result.data)) {
+            if (count < retries) {
+                count++;
+
+                await new Promise((resolve) => setTimeout(resolve, delay));
+
+                return retry();
+            }
+        }
+
+        return result;
+    };
+
+    return retry();
 };

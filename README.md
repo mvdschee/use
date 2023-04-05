@@ -30,6 +30,7 @@ import { useFetch } from '@mvdschee/use';
 
 -   [useFetch](#useFetch) Some extra ease of use functions on top of `fetch`, like instant headers, response timing and body and query parsing.
 -   [useSWR](#useSWR) `stale-while-revalidate` always return data while updating once the time out is over.
+-   [useRetry](#useRetry) Retry useFetch a certain amount of times with a delay between each try.
 
 ### DOM
 
@@ -123,6 +124,24 @@ import { useSWR } from '@mvdschee/use';
 
 // default timeout is 10 minutes
 await useSWR(`unique-name`, () => getData(), 600_000);
+```
+
+## useRetry
+
+Retry useFetch a certain amount of times with a delay between each try.
+
+```ts
+import { useRetry } from '@mvdschee/use';
+
+const { data, error, header, time } = await useRetry({
+    retries: 3, // default 3
+    delay: 1000, // default 1000
+    retryOn: ({ error }) => error !== null,
+    call: () =>
+        useFetch<DataType>('/api/data', {
+            baseUrl: 'https://example.com',
+        }),
+});
 ```
 
 ## useAvatar
