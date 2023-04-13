@@ -182,12 +182,13 @@ import { useSearch } from '@mvdschee/use';
 const search = useSearch({
     // simple list of strings
     items: ['example', 'example 2'],
-    // sorted list of strings per first character (good for many items)
+    // OPTIONAL: sorted list of strings per first character (good for many items)
     //  will fallback to items if no results are found to prevent empty results
     sorted_items: {
         a: ['account', 'account 2'],
         e: ['example', 'example 2'],
     },
+    // OPTIONAL
     options: {
         distance: 3, // default 3: max distance between characters in a typo
         results_count: 8, // default 8: how many matches to return
