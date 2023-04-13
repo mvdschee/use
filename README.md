@@ -37,6 +37,10 @@ import { useFetch } from '@mvdschee/use';
 -   [useAvatar](#useAvatar) A colorful profile photo based on the account name.
 -   [useMarkdown](#useMarkdown) A fast and compact markdown parser. (no support for HTML)
 
+# Search
+
+-   [useSearch](#useSearch) A fast search engine with support for typos.
+
 ### Style
 
 -   [useColor](#useColor) Convert a string to a hsla color.
@@ -166,6 +170,32 @@ useMarkdown('example'); // returns a string: <p>example</p>
 
 // with options (source, render as html, class)
 useMarkdown('example', true, 'class-name'); // returns a DOM element: <div class="class-name"><p>example</p></div>
+```
+
+## useSearch
+
+Fast search engine with support for typos
+
+```ts
+import { useSearch } from '@mvdschee/use';
+
+const search = useSearch({
+    // simple list of strings
+    items: ['example', 'example 2'],
+    // sorted list of strings per first character (good for many items)
+    //  will fallback to items if no results are found to prevent empty results
+    sorted_items: {
+        a: ['account', 'account 2'],
+        e: ['example', 'example 2'],
+    },
+    options: {
+        distance: 3, // default 3: max distance between characters in a typo
+        results_count: 8, // default 8: how many matches to return
+        results_count_alt: 32, // default 32: how many alternative results with typos to look up (caped to results_count)
+    },
+});
+
+const result = search('exa'); // returns [example', 'example 2'],
 ```
 
 ## useColor
