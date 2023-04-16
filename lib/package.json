@@ -1,0 +1,37 @@
+{
+    "name": "@mvdschee/use",
+    "description": "A collection of methodes I use daily",
+    "keywords": [
+        "use",
+        "methods",
+        "utils",
+        "typescript"
+    ],
+    "version": "0.1.2",
+    "license": "MIT",
+    "private": false,
+    "author": {
+        "name": "Max van der Schee",
+        "url": "https://maxvanderschee.nl"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mvdschee/use.git"
+    },
+    "bugs": {
+        "url": "https://github.com/mvdschee/use/issues"
+    },
+    "homepage": "https://github.com/mvdschee/use#readme",
+    "contributors": [
+        "Max van der Schee"
+    ],
+    "types": "dist/main.d.ts",
+    "main": "dist/main.cjs.js",
+    "module": "dist/main.es.js",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "packageManager": "pnpm@8.2.0"
+}
