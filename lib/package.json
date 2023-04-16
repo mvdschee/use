@@ -32,6 +32,5 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview"
-    },
-    "packageManager": "pnpm@8.2.0"
+    }
 }
