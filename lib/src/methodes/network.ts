@@ -70,12 +70,19 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
     }
 };
 
+// This will create memory leaks if used to much.
+// there is no cleanup function to remove the old cache
 const cache = new Map();
+
 export const useSWR = async <T = unknown>(
     key: string,
     refresh: (lastValue?: unknown) => Promise<unknown>,
     staleAfter = 600_000,
+    forceRefresh = false,
 ): Promise<T> => {
+    // Force refresh, delete the cache
+    if (forceRefresh && cache.get(key)) cache.delete(key);
+
     const data = cache.get(key) || { ts: 0, val: null, promise: null };
 
     // Item is stale, start refreshing in the background
@@ -86,7 +93,7 @@ export const useSWR = async <T = unknown>(
             data.ts = Date.now();
             data.val = await data.promise;
         } catch (e: unknown) {
-            throw new Error(e as any);
+            throw new Error(e as unknown as string);
         } finally {
             data.promise = null;
         }
