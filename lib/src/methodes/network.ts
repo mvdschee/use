@@ -39,8 +39,8 @@ interface UseFetchArgs {
 export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): Promise<UseFetchReturn<T>> => {
     const options: RequestInit = {
         method: args?.method || 'GET',
-        headers: args?.headers || {},
-        body: args?.body ? JSON.stringify(args.body) : null,
+        headers: args?.headers || undefined,
+        body: args?.body ? JSON.stringify(args.body) : undefined,
     };
 
     const headers: Record<string, string> = {};
@@ -51,6 +51,7 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
 
     try {
         const t1 = performance.now();
+        console.log({ ...options });
         const response = await fetch(url, { ...options });
         const data = getBlob ? await response.blob() : await response.json();
 
@@ -78,7 +79,7 @@ export const useSWR = async <T = unknown>(
     key: string,
     refresh: (lastValue?: unknown) => Promise<unknown>,
     staleAfter = 600_000,
-    forceRefresh = false,
+    forceRefresh = false
 ): Promise<T> => {
     // Force refresh, delete the cache
     if (forceRefresh && cache.get(key)) cache.delete(key);

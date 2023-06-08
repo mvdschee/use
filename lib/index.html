@@ -10,6 +10,11 @@
 <body style="background-color: #1a1a1a;color:#fcfcfd;">
     <h1>Development</h1>
     <script type="module" src="src/main.ts"></script>
+    <script type="module">
+        import { useFetch } from "./src/main.ts";
+
+        await useFetch('https://metadata.wombat.app/polygon/wombat-reborn/0000000000000000000000000000000000000000000000000000000000000065.json');
+    </script>
 </body>
 
 </html>
