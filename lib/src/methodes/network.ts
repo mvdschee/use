@@ -51,7 +51,6 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
 
     try {
         const t1 = performance.now();
-        console.log({ ...options });
         const response = await fetch(url, { ...options });
         const data = getBlob ? await response.blob() : await response.json();
 
