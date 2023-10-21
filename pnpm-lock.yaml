@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -11,7 +15,7 @@ importers:
         specifier: ^1.62.0
         version: 1.62.0
       typescript:
-        specifier: ^5.0.4
+        specifier: ^5.x
         version: 5.0.4
       vite:
         specifier: ^4.2.1

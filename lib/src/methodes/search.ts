@@ -10,22 +10,17 @@ interface Options {
         [key: string]: string[];
     };
     options?: {
-        distance: number;
-        results_count: number;
-        results_count_alt: number;
+        distance?: number;
+        results_count?: number;
+        results_count_alt?: number;
     };
 }
 
-/*!
- * Suggestify
- * (c) Max van der Schee
- * @license MIT
- */
 export const useSearch = ({ items, sorted_items, options }: Options) => {
     const config = {
         distance: 3,
         results_count: 8,
-        results_count_alt: 32,
+        results_count_alt: 16,
         ...options,
     };
 
@@ -109,7 +104,7 @@ export const useSearch = ({ items, sorted_items, options }: Options) => {
                         : Math.min(
                               arr[i - 1][j] + 1,
                               arr[i][j - 1] + 1,
-                              arr[i - 1][j - 1] + (s[j - 1] === t[i - 1] ? 0 : 1),
+                              arr[i - 1][j - 1] + (s[j - 1] === t[i - 1] ? 0 : 1)
                           );
             }
         }

@@ -113,7 +113,7 @@ export const useRetry = <T = unknown>({
 }: {
     retries?: number;
     delay?: number;
-    retryOn: (data: unknown) => boolean;
+    retryOn: (data: T) => boolean;
     call: () => Promise<UseFetchReturn<T>>;
 }) => {
     let count = 0;
@@ -123,7 +123,7 @@ export const useRetry = <T = unknown>({
 
         if (result.error) return result;
 
-        if (retryOn(result.data)) {
+        if (retryOn(result.data as T)) {
             if (count < retries) {
                 count++;
 
