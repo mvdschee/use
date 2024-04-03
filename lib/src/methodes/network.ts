@@ -6,7 +6,7 @@
 // useSWR
 // useRetry
 
-interface UseFetchReturn<T> {
+export interface UseFetchReturn<T> {
     /**
      * The raw response of the fetch response
      */
@@ -25,9 +25,9 @@ interface UseFetchReturn<T> {
     time: number;
 }
 
-type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS';
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS';
 
-interface UseFetchArgs {
+export interface UseFetchArgs {
     method?: HttpMethod;
     headers?: HeadersInit;
     baseUrl?: string;

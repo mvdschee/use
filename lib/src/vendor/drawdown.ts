@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * drawdown.js (c) Adam Leggett
  */

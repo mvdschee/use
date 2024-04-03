@@ -2,42 +2,29 @@
 
 ### ⚡️ Under heavy development. Pin your NPM version!!!! before consumption. ⚡️
 
-Useful methodes we use daily in our projects.
-Most methodes you probably find in your favorite framework, but we needed something you can use everywhere.
+Useful methodes I use daily in projects.
+Most methodes you probably find in your favorite framework, but I needed something I can use everywhere.
 
 -   [vueUse](https://vueuse.org/) for Vue projects.
 -   [reactuses](https://www.reactuse.com/) for React projects.
 
-Most functions lack proper checking as we require you to still think about what you are doing.
+Most functions lack proper checking as this would just add more code and I don't want to bloat my code with checks.
 
 It's all typed so you should be good to go.
 
 ## Installation
 
 ```bash
-pnpm install @nefty/use
-```
-
-```bash
-yarn add @nefty/use
+yarn add @mvdschee/use
 ```
 
 ## Usage
 
 ```js
-import { ... } from '@nefty/use';
+import { useFetch } from "@mvdschee/use";
 ```
 
 # Methodes
-
-### Analytics
-
--   [usePosthog](#usePosthog) Posthog analytics
-
-# Assets
-
--   [useAssetData](#useAssetData) Get data from a template (WAX api only)
--   [useImageUrl](#useImageUrl) Create resized image url from a CID or url (works only for allowed domains)
 
 ### Network
 
@@ -66,59 +53,6 @@ import { ... } from '@nefty/use';
 
 -   [useTokenDisplay](#useTokenDisplay) format a number to a string display, with a max of 8 decimals.
 
-### Wallet
-
--   [WalletUAL](#WalletUAL) Wallet management for UAL.
-
-## usePosthog
-
-Posthog analytics
-
-```ts
-import { usePosthog } from '@nefty/use';
-
-// init with extra options
-const analytics = usePosthog({
-    version: 'v2',
-});
-
-// track an event
-analytics.track('event-name', {
-    // data
-});
-
-// identify a user
-analytics.identify('user-id');
-```
-
-## useAssetData
-
-Get data from a template (WAX api only)
-
-```ts
-import { useAssetData } from '@nefty/use';
-
-const template = {...};
-
-const asset = useAssetData(template);
-
-if(asset) {
-    const { name, img } = asset;
-}
-
-```
-
-## useImageUrl
-
-Create resized image url from a CID or url (works only for allowed domains)
-
-```ts
-import { useImageUrl } from '@nefty/use';
-
-// resize to 100x100 and make it static
-useImageUrl('https://example.com/image.png', 100, true);
-```
-
 ## useFetch
 
 Small wrapper around native fetch to stringify body and parse parms as an object (not doing polyfilling)
@@ -127,7 +61,7 @@ No need for a `try catch`, this is done iternaly.
 
 ```ts
 // GET request
-import { useFetch } from '@nefty/use';
+import { useFetch } from '@mvdschee/use';
 
 const { data, error } = await useFetch<DataType>('/api/data', {
     baseUrl: 'https://example.com',
@@ -151,7 +85,7 @@ else {
 
 ```ts
 // POST request
-import { useFetch } from '@nefty/use';
+import { useFetch } from '@mvdschee/use';
 
 const { data, error } = await useFetch<DataType>('/api/data', {
     baseUrl: 'https://example.com',
@@ -175,13 +109,13 @@ else {
 
 ```ts
 // All options
-import { useFetch } from '@nefty/use';
+import { useFetch } from "@mvdschee/use";
 
-const { data, error, header, time } = await useFetch<DataType>('/api/data', {
-    baseUrl: 'https://example.com',
+const { data, error, header, time } = await useFetch<DataType>("/api/data", {
+    baseUrl: "https://example.com",
 });
 
-console.log(header['content-type']); // returns the content-type header
+console.log(header["content-type"]); // returns the content-type header
 console.log(time); // returns the time it took to fetch the data
 ```
 
@@ -190,7 +124,7 @@ console.log(time); // returns the time it took to fetch the data
 SWR is a clientside caching (Stall While Revalidate) just to save some bytes
 
 ```ts
-import { useSWR } from '@nefty/use';
+import { useSWR } from "@mvdschee/use";
 
 // default timeout is 10 minutes
 await useSWR(`unique-name`, () => getData(), 600_000);
@@ -201,15 +135,15 @@ await useSWR(`unique-name`, () => getData(), 600_000);
 Retry useFetch a certain amount of times with a delay between each try.
 
 ```ts
-import { useRetry } from '@mvdschee/use';
+import { useRetry } from "@mvdschee/use";
 
 const { data, error, header, time } = await useRetry({
     retries: 3, // default 3
     delay: 1000, // default 1000
     retryOn: ({ error }) => error !== null,
     call: () =>
-        useFetch<DataType>('/api/data', {
-            baseUrl: 'https://example.com',
+        useFetch<DataType>("/api/data", {
+            baseUrl: "https://example.com",
         }),
 });
 ```
@@ -219,23 +153,23 @@ const { data, error, header, time } = await useRetry({
 Fast and beautiful dynamic avatar based on account name
 
 ```ts
-import { useAvatar } from '@nefty/use';
+import { useAvatar } from "@mvdschee/use";
 
-useAvatar('example'); // returns a svg as a string
+useAvatar("example"); // returns a svg as a string
 ```
 
 ## useMarkdown
 
 Fast and compact markdown parser
-see [nefty/drawdown](https://github.com/nefty/drawdown) for more info
+see [mvdschee/drawdown](https://github.com/mvdschee/drawdown) for more info
 
 ```ts
-import { useMarkdown } from '@nefty/use';
+import { useMarkdown } from "@mvdschee/use";
 
-useMarkdown('example'); // returns a string: <p>example</p>
+useMarkdown("example"); // returns a string: <p>example</p>
 
 // with options (source, render as html, class)
-useMarkdown('example', true, 'class-name'); // returns a DOM element: <div class="class-name"><p>example</p></div>
+useMarkdown("example", true, "class-name"); // returns a DOM element: <div class="class-name"><p>example</p></div>
 ```
 
 ## useSearch
@@ -243,16 +177,16 @@ useMarkdown('example', true, 'class-name'); // returns a DOM element: <div class
 Fast search engine with support for typos
 
 ```ts
-import { useSearch } from '@nefty/use';
+import { useSearch } from "@mvdschee/use";
 
 const search = useSearch({
     // simple list of strings
-    items: ['example', 'example 2'],
+    items: ["example", "example 2"],
     // OPTIONAL: sorted list of strings per first character (good for many items)
     //  will fallback to items if no results are found to prevent empty results
     sorted_items: {
-        a: ['account', 'account 2'],
-        e: ['example', 'example 2'],
+        a: ["account", "account 2"],
+        e: ["example", "example 2"],
     },
     // OPTIONAL
     options: {
@@ -262,7 +196,7 @@ const search = useSearch({
     },
 });
 
-const result = search('exa'); // returns [example', 'example 2'],
+const result = search("exa"); // returns [example', 'example 2'],
 ```
 
 ## useColor
@@ -270,9 +204,9 @@ const result = search('exa'); // returns [example', 'example 2'],
 String to hsla color
 
 ```ts
-import { useColor } from '@nefty/use';
+import { useColor } from "@mvdschee/use";
 
-useColor('example'); // returns a hsla color string
+useColor("example"); // returns a hsla color string
 ```
 
 ## useCountDown
@@ -280,7 +214,7 @@ useColor('example'); // returns a hsla color string
 Countdown displayer, in DHMS format
 
 ```ts
-import { useCountDown } from '@nefty/use';
+import { useCountDown } from "@mvdschee/use";
 
 // (start time, current time)
 useCountDown(new Date().valueOf() - 1000, new Date().valueOf()); // returns 1S
@@ -292,27 +226,9 @@ Format a number to a string display, with a max of 8 decimals (default)
 and optional fixed decimals (default false)
 
 ```ts
-import { useTokenDisplay } from '@nefty/use';
+import { useTokenDisplay } from "@mvdschee/use";
 
 useTokenDisplay(100, 2); // returns 100
 
 useTokenDisplay(100, 2, true); // returns 100.00
-```
-
-## WalletUAL
-
-Wallet management for UAL. not going to go in to much details here, but you can find more info on the [UAL](https://github.com/EOSIO/universal-authenticator-library)
-
-```ts
-import { WalletUAL, WalletUser } from '@nefty/use/wallet';
-
-const callback = (users: WalletUser[]): void => {};
-
-const wallet_anchor = new Anchor([network], { appName });
-const wallet_wax = new Wax([network]);
-const wallet_wombat = new Wombat([network], { appName });
-
-const provider = new WalletUAL(callback, [network], appName, [wallet_anchor, wallet_wax, wallet_wombat]);
-
-provider.init();
 ```
