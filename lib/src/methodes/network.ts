@@ -31,6 +31,7 @@ export interface UseFetchArgs {
     method?: HttpMethod;
     headers?: HeadersInit;
     baseUrl?: string;
+    signal?: AbortSignal;
     body?: Record<string, unknown>;
     params?: Record<string, string>;
     blob?: boolean;
@@ -40,6 +41,7 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
     const options: RequestInit = {
         method: args?.method || 'GET',
         headers: args?.headers || undefined,
+        signal: args?.signal || undefined,
         body: args?.body ? JSON.stringify(args.body) : undefined,
     };
 
