@@ -49,7 +49,15 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
     const getBlob = args ? !!args.blob : false;
 
     if (args?.baseUrl) url = args.baseUrl + url;
-    if (args?.params) url += `?${new URLSearchParams(args.params).toString()}`;
+    if (args?.params) {
+        const params = Object.entries(args?.params)
+            .map(([key, value]) => {
+                return `${key}=${value}`;
+            })
+            .join('&');
+
+        url += `?${params}`;
+    }
 
     try {
         const t1 = performance.now();
