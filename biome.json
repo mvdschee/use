@@ -1,23 +1,22 @@
 {
-    "$schema": "./node_modules/rome/configuration_schema.json",
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
     "linter": {
         "enabled": true,
         "rules": {
-            "recommended": true
+            "recommended": true,
+            "suspicious": {
+                "noExplicitAny": "off"
+            }
         },
-        "ignore": [
-            "dist/"
-        ]
+        "ignore": ["dist/"]
     },
     "formatter": {
         "enabled": true,
         "formatWithErrors": false,
         "indentStyle": "space",
-        "indentSize": 4,
+        "indentWidth": 4,
         "lineWidth": 120,
-        "ignore": [
-            "dist/"
-        ]
+        "ignore": ["dist/"]
     },
     "javascript": {
         "formatter": {

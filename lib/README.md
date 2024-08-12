@@ -21,7 +21,7 @@ yarn add @mvdschee/use
 ## Usage
 
 ```js
-import { useFetch } from "@mvdschee/use";
+import { useFetch } from '@mvdschee/use';
 ```
 
 # Methodes
@@ -52,6 +52,10 @@ import { useFetch } from "@mvdschee/use";
 ### Format
 
 -   [useTokenDisplay](#useTokenDisplay) format a number to a string display, with a max of 8 decimals.
+
+### Misc
+
+-   [useLog](#useLog) Log to console with a specified type and timestamp all with color coding for better readability.
 
 ## useFetch
 
@@ -89,7 +93,7 @@ import { useFetch } from '@mvdschee/use';
 
 const { data, error } = await useFetch<DataType>('/api/data', {
     baseUrl: 'https://example.com',
-    methode: 'POST',
+    method: 'POST',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -109,13 +113,13 @@ else {
 
 ```ts
 // All options
-import { useFetch } from "@mvdschee/use";
+import { useFetch } from '@mvdschee/use';
 
-const { data, error, header, time } = await useFetch<DataType>("/api/data", {
-    baseUrl: "https://example.com",
+const { data, error, header, time } = await useFetch<DataType>('/api/data', {
+    baseUrl: 'https://example.com',
 });
 
-console.log(header["content-type"]); // returns the content-type header
+console.log(header['content-type']); // returns the content-type header
 console.log(time); // returns the time it took to fetch the data
 ```
 
@@ -124,7 +128,7 @@ console.log(time); // returns the time it took to fetch the data
 SWR is a clientside caching (Stall While Revalidate) just to save some bytes
 
 ```ts
-import { useSWR } from "@mvdschee/use";
+import { useSWR } from '@mvdschee/use';
 
 // default timeout is 10 minutes
 await useSWR(`unique-name`, () => getData(), 600_000);
@@ -135,15 +139,15 @@ await useSWR(`unique-name`, () => getData(), 600_000);
 Retry useFetch a certain amount of times with a delay between each try.
 
 ```ts
-import { useRetry } from "@mvdschee/use";
+import { useRetry } from '@mvdschee/use';
 
 const { data, error, header, time } = await useRetry({
     retries: 3, // default 3
     delay: 1000, // default 1000
     retryOn: ({ error }) => error !== null,
     call: () =>
-        useFetch<DataType>("/api/data", {
-            baseUrl: "https://example.com",
+        useFetch<DataType>('/api/data', {
+            baseUrl: 'https://example.com',
         }),
 });
 ```
@@ -153,9 +157,9 @@ const { data, error, header, time } = await useRetry({
 Fast and beautiful dynamic avatar based on account name
 
 ```ts
-import { useAvatar } from "@mvdschee/use";
+import { useAvatar } from '@mvdschee/use';
 
-useAvatar("example"); // returns a svg as a string
+useAvatar('example'); // returns a svg as a string
 ```
 
 ## useMarkdown
@@ -164,12 +168,12 @@ Fast and compact markdown parser
 see [mvdschee/drawdown](https://github.com/mvdschee/drawdown) for more info
 
 ```ts
-import { useMarkdown } from "@mvdschee/use";
+import { useMarkdown } from '@mvdschee/use';
 
-useMarkdown("example"); // returns a string: <p>example</p>
+useMarkdown('example'); // returns a string: <p>example</p>
 
 // with options (source, render as html, class)
-useMarkdown("example", true, "class-name"); // returns a DOM element: <div class="class-name"><p>example</p></div>
+useMarkdown('example', true, 'class-name'); // returns a DOM element: <div class="class-name"><p>example</p></div>
 ```
 
 ## useSearch
@@ -177,16 +181,16 @@ useMarkdown("example", true, "class-name"); // returns a DOM element: <div class
 Fast search engine with support for typos
 
 ```ts
-import { useSearch } from "@mvdschee/use";
+import { useSearch } from '@mvdschee/use';
 
 const search = useSearch({
     // simple list of strings
-    items: ["example", "example 2"],
+    items: ['example', 'example 2'],
     // OPTIONAL: sorted list of strings per first character (good for many items)
     //  will fallback to items if no results are found to prevent empty results
     sorted_items: {
-        a: ["account", "account 2"],
-        e: ["example", "example 2"],
+        a: ['account', 'account 2'],
+        e: ['example', 'example 2'],
     },
     // OPTIONAL
     options: {
@@ -196,7 +200,7 @@ const search = useSearch({
     },
 });
 
-const result = search("exa"); // returns [example', 'example 2'],
+const result = search('exa'); // returns [example', 'example 2'],
 ```
 
 ## useColor
@@ -204,9 +208,9 @@ const result = search("exa"); // returns [example', 'example 2'],
 String to hsla color
 
 ```ts
-import { useColor } from "@mvdschee/use";
+import { useColor } from '@mvdschee/use';
 
-useColor("example"); // returns a hsla color string
+useColor('example'); // returns a hsla color string
 ```
 
 ## useCountDown
@@ -214,7 +218,7 @@ useColor("example"); // returns a hsla color string
 Countdown displayer, in DHMS format
 
 ```ts
-import { useCountDown } from "@mvdschee/use";
+import { useCountDown } from '@mvdschee/use';
 
 // (start time, current time)
 useCountDown(new Date().valueOf() - 1000, new Date().valueOf()); // returns 1S
@@ -226,9 +230,25 @@ Format a number to a string display, with a max of 8 decimals (default)
 and optional fixed decimals (default false)
 
 ```ts
-import { useTokenDisplay } from "@mvdschee/use";
+import { useTokenDisplay } from '@mvdschee/use';
 
 useTokenDisplay(100, 2); // returns 100
 
 useTokenDisplay(100, 2, true); // returns 100.00
+```
+
+## useLog
+
+Log to console with a specified type and timestamp all with color coding for better readability
+
+```ts
+import { useLog } from '@mvdschee/use';
+
+useLog('example', 'info'); // returns 2024-08-12 11:54:36 [INFO] example
+
+useLog('example', 'warn'); // returns 2024-08-12 11:54:36 [WARN] example
+
+useLog('example', 'error'); // returns 2024-08-12 11:54:36 [ERROR] example
+
+useLog('example', 'status'); // returns 2024-08-12 11:54:36 example
 ```

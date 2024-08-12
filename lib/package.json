@@ -7,7 +7,7 @@
         "utils",
         "typescript"
     ],
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "MIT",
     "private": false,
     "author": {
@@ -25,9 +25,10 @@
     "contributors": [
         "Max van der Schee"
     ],
+    "type": "module",
     "types": "dist/main.d.ts",
-    "main": "dist/main.cjs.js",
-    "module": "dist/main.es.js",
+    "main": "dist/main.cjs",
+    "module": "dist/main.mjs",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
