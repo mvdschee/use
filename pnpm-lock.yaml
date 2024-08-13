@@ -18,7 +18,7 @@ importers:
         specifier: ^5.x
         version: 5.0.4
       vite:
-        specifier: ^ 5.4.0
+        specifier: ^5.4.0
         version: 5.4.0(sass@1.77.8)
       vite-plugin-dts:
         specifier: ^4.0.2
