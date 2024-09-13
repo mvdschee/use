@@ -16,10 +16,10 @@ export const useLog = (msg: string, type: 'info' | 'warn' | 'error' | 'status' =
         type === 'status'
             ? ''
             : type === 'info'
-            ? '\x1b[32m[INFO]'
+            ? ' \x1b[32m[INFO]'
             : type === 'warn'
-            ? '\x1b[33m[WARN]'
-            : '\x1b[31m[ERROR]';
+            ? ' \x1b[33m[WARN]'
+            : ' \x1b[31m[ERROR]';
 
-    console.log(`\x1b[90m${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')} ${status} \x1b[0m${msg}`);
+    console.log(`\x1b[90m${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}${status} \x1b[0m${msg}`);
 };
