@@ -59,7 +59,8 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
         url += `?${params}`;
     }
 
-    const noParse = options.headers?['Content-Type'].includes('text/plain');
+    const noParse =
+        options.headers && 'Content-Type' in options.headers && options.headers['Content-Type'].includes('text/plain');
 
     try {
         const t1 = performance.now();
