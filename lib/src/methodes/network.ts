@@ -59,10 +59,12 @@ export const useFetch = async <T = unknown>(url: string, args?: UseFetchArgs): P
         url += `?${params}`;
     }
 
+    const noParse = headers['Content-Type']?.includes('text/plain');
+
     try {
         const t1 = performance.now();
         const response = await fetch(url, { ...options });
-        const data = getBlob ? await response.blob() : await response.json();
+        const data = getBlob ? await response.blob() : noParse ? await response.text() : await response.json();
 
         for (const [key, value] of response.headers.entries()) {
             headers[key] = value;
